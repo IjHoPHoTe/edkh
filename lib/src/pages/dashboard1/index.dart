@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dkh/src/controller/TransaksiController.dart';
-import 'package:dkh/src/pages/Navbar.dart';
 import 'package:dkh/src/router/constant.dart';
 import 'package:dkh/src/services/assets.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +10,14 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class Dashboard1 extends StatefulWidget {
+  const Dashboard1({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Dashboard1> createState() => _Dashboard1State();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _Dashboard1State extends State<Dashboard1> {
   String showYear = 'Select Year';
   DateTime _selectedYear = DateTime.now();
   String showMonth = 'Select Month';
@@ -213,7 +212,7 @@ class _DashboardState extends State<Dashboard> {
 
   Future<void> fetchData() async {
     // var url = Uri.parse('http://dkhiass.gosir.my.id/api/semua_kas');
-    var url = Uri.parse('http://192.168.185.133:8001/api/semua_kas');
+    var url = Uri.parse('http://192.168.245.133:8001/api/semua_kas');
 
     var response = await http.get(url);
 
@@ -297,7 +296,6 @@ class _DashboardState extends State<Dashboard> {
 
     return totalKasMasuk - totalKasKeluar;
   }
-
   // int calculateSisaSaldoBySelectedMonth() {
   //   int totalKasMasukBySelectedMonth = 0; // Reset total kas masuk
   //   int totalKasKeluarBySelectedMonth = 0; // Reset total kas keluar
@@ -327,7 +325,7 @@ class _DashboardState extends State<Dashboard> {
                 child: Stack(
                   children: [
                     Container(
-                      height: 212,
+                      height: 190,
                       padding: const EdgeInsets.only(left: 15, right: 15),
                       // width: MediaQuery.of(context).size.width,
                       decoration:
@@ -340,18 +338,25 @@ class _DashboardState extends State<Dashboard> {
                                 left: 5, right: 5, top: 30),
                             child: Row(
                               children: <Widget>[
-                                RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: _namaLogin,
+                                InkWell(
+                                  onTap: () => Get.toNamed(loginRoute),
+                                  child: Container(
+                                    height: 30,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color.fromRGBO(29, 171, 135, 1),
+                                      border: Border.all(color: Colors.white),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Login',
                                         style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                                 Spacer(),
@@ -398,25 +403,6 @@ class _DashboardState extends State<Dashboard> {
                               ],
                             ),
                           ),
-
-                          // SizedBox(height: 10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 5, bottom: 8),
-                                child: Text(
-                                  'Bendahara',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
                           SizedBox(height: 10),
                           Center(
                             child: Container(
@@ -440,6 +426,7 @@ class _DashboardState extends State<Dashboard> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
+
                                     SizedBox(height: 5),
                                     Text(
                                       'Rp. ${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(calculateTotalSisaKas())}',
@@ -449,7 +436,6 @@ class _DashboardState extends State<Dashboard> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-
                                     // SizedBox(height: 5),
                                     // Text(
                                     //   'Rp. ${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(calculateSisaSaldoBySelectedMonth())}',
@@ -473,7 +459,7 @@ class _DashboardState extends State<Dashboard> {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15),
                 child: InkWell(
-                  onTap: () => Get.toNamed(mainRoute),
+                  onTap: () => Get.toNamed(inputpemasukanRoute),
                   child: Container(
                     height: 80,
                     width: 450,
@@ -602,7 +588,7 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () => Get.toNamed(transaksiRoute),
+                                onTap: () => Get.toNamed(transaksi1Route),
                                 child: Text(
                                   'Detail >',
                                   style: TextStyle(
@@ -700,7 +686,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
       ),
-      bottomNavigationBar: Navbar(),
+      // bottomNavigationBar: Navbar(),
     );
   }
 }

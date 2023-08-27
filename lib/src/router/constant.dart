@@ -1,7 +1,13 @@
 const String rootRoute = '/';
 const String mainRoute = '/main';
 const String loginRoute = '/login';
+const String landingRoute = '/landing';
 const String dashboardRoute = '/dashboard';
+const String dashboard1Route = '/dashboard1';
+const String addRoute = '/add';
+const String transaksiRoute = '/transaksi';
+const String transaksi1Route = '/transaksi1';
+const String laporanRoute = '/laporan';
 const String pemasukanRoute = '/pemasukan';
 const String pengeluaranRoute = '/pengeluaran';
 const String inputpemasukanRoute = '/inputpemasukan';

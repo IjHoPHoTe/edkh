@@ -1,16 +1,42 @@
+import 'dart:convert';
+
 import 'package:dkh/src/router/constant.dart';
 import 'package:dkh/src/services/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class Pemasukan extends StatefulWidget {
-  const Pemasukan({super.key});
-
   @override
-  State<Pemasukan> createState() => _PemasukanState();
+  _PemasukanState createState() => _PemasukanState();
 }
 
 class _PemasukanState extends State<Pemasukan> {
+  List<dynamic> kasData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    var url = Uri.parse('http://dkhiass.candibinangun.id/api/semua_kas');
+
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      setState(() {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        if (data['success']) {
+          kasData = data['data'];
+        }
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

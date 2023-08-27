@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:dkh/src/router/constant.dart';
-import 'package:dkh/src/services/preference.dart';
 import 'package:dkh/src/services/assets.dart';
+import 'package:dkh/src/services/preference.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +25,7 @@ class _RootState extends State<Root> {
     if (token != '' && token != null) {
       Get.offAndToNamed(mainRoute);
     } else {
-      Get.offAndToNamed(loginRoute);
+      Get.offAndToNamed(dashboard1Route);
     }
   }
 
@@ -44,8 +44,8 @@ class _RootState extends State<Root> {
           child: Center(
             child: Image.asset(
               logo1,
-              height: 250,
-              width: 250,
+              height: 180,
+              width: 180,
             ),
           ),
         ),
